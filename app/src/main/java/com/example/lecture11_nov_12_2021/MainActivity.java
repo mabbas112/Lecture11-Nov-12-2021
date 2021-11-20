@@ -1,8 +1,11 @@
 package com.example.lecture11_nov_12_2021;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +28,32 @@ public class MainActivity extends AppCompatActivity {
         img.setImageResource(R.drawable.ic_launcher_background);
         TextView tv= mylayout.findViewById(R.id.textView);
         tv.setText("My custom toast");
-        Toast t= new Toast(getApplicationContext());
+        Toast t=new Toast(this);
         t.setView(mylayout);
         t.setDuration(Toast.LENGTH_LONG);
         t.show();
 
 
+
+    }
+    public void showDialog(View view){
+        AlertDialog.Builder b=new AlertDialog.Builder(MainActivity.this);
+        b.setMessage("Do you want to exit? ");
+        b.setTitle("ALERT!");
+        b.setCancelable(false);
+        b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        b.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog alertDialog = b.create();
+        alertDialog.show();
     }
 }
