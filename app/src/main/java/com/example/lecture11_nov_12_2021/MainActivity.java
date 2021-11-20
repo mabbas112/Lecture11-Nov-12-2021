@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    String [] Colors = {"Red", "Green", "Blue"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showDialog(View view){
         AlertDialog.Builder b=new AlertDialog.Builder(MainActivity.this);
-        b.setMessage("Do you want to exit? ");
+        /*b.setMessage("Do you want to exit? ");
         b.setTitle("ALERT!");
         b.setCancelable(false);
         b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -51,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
+            }
+        });*/
+        b.setTitle("Colors");
+        b.setItems(Colors, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,Colors[i],Toast.LENGTH_LONG).show();
             }
         });
         AlertDialog alertDialog = b.create();
